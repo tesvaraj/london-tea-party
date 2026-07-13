@@ -352,3 +352,44 @@ body {
 .mt-10  { margin-top: 10px; }
 .mt-20  { margin-top: 20px; }
 .mt-30  { margin-top: 30px; }
+
+/* ===================== MOBILE ===================== */
+@media (max-width: 480px) {
+  .page-wrapper {
+    padding: 8px 12px 30px;
+  }
+
+  .site-header {
+    transform: none;
+    padding: 16px 10px 10px;
+  }
+
+  .site-header h1 {
+    font-size: 2.2em;
+    text-shadow: 2px 2px 0 var(--gold), 4px 4px 0 var(--purple);
+  }
+
+  .card {
+    transform: none;
+    padding: 16px 16px;
+  }
+
+  .card h2 {
+    font-size: 1.5em;
+  }
+
+  .btn-chaos {
+    font-size: 1.1em;
+    padding: 12px 22px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .big-name {
+    font-size: 2em;
+  }
+
+  .participant-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+}
