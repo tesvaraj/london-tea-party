@@ -19,6 +19,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   background-color: #fffde7;
   background-image:
     radial-gradient(circle, #FF69B4 1px, transparent 1px),
@@ -299,6 +300,7 @@ body {
   text-shadow: 3px 3px 0 var(--gold);
   margin: 10px 0;
   letter-spacing: 2px;
+  word-break: break-word;
 }
 
 .size-tag {
@@ -354,7 +356,7 @@ body {
 .mt-30  { margin-top: 30px; }
 
 /* ===================== MOBILE ===================== */
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .page-wrapper {
     padding: 8px 12px 30px;
   }
@@ -362,34 +364,68 @@ body {
   .site-header {
     transform: none;
     padding: 16px 10px 10px;
+    box-shadow: 3px 3px 0 var(--purple);
   }
 
   .site-header h1 {
-    font-size: 2.2em;
-    text-shadow: 2px 2px 0 var(--gold), 4px 4px 0 var(--purple);
+    font-size: 2em;
+    text-shadow: 2px 2px 0 var(--gold), 3px 3px 0 var(--purple);
+    letter-spacing: 1px;
+  }
+
+  .site-header .tagline {
+    font-size: 0.9em;
   }
 
   .card {
     transform: none;
-    padding: 16px 16px;
+    padding: 14px 14px;
+    box-shadow: 3px 3px 0 var(--gold);
+    margin: 12px auto;
   }
 
   .card h2 {
-    font-size: 1.5em;
+    font-size: 1.4em;
   }
 
   .btn-chaos {
     font-size: 1.1em;
-    padding: 12px 22px;
+    padding: 12px 20px;
+    display: block;
     width: 100%;
     text-align: center;
   }
 
+  .btn-secondary {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 8px 0 0;
+  }
+
   .big-name {
-    font-size: 2em;
+    font-size: 1.8em;
+  }
+
+  .size-tag {
+    font-size: 1.3em;
+  }
+
+  .count-badge {
+    font-size: 1em;
+    padding: 5px 14px;
   }
 
   .participant-grid {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rules-list li {
+    font-size: 0.95em;
+  }
+
+  .star-divider {
+    font-size: 1.2em;
+    letter-spacing: 2px;
   }
 }
