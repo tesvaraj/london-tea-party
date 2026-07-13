@@ -34,6 +34,17 @@ body {
   padding: 10px 20px 40px;
 }
 
+/* ===================== HEADER LINK ===================== */
+.header-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 18px;
+}
+.header-link:hover .site-header {
+  transform: rotate(-1.5deg) scale(1.01);
+}
+
 /* ===================== HEADER ===================== */
 .site-header {
   text-align: center;
@@ -41,7 +52,6 @@ body {
   background: white;
   border: 5px solid var(--pink);
   border-radius: 18px;
-  margin-bottom: 18px;
   box-shadow: 6px 6px 0 var(--purple);
   transform: rotate(-1deg);
 }
