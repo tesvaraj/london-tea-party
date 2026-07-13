@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>☕ London Tea-Shirt Party 👕</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <div class="site-header">
+    <p style="font-size:1em; color:#888; margin:0 0 4px;">⚠️ <span class="blink" style="color:red;">TOP SECRET</span> ⚠️</p>
+    <h1>☕ London Tea-Shirt Party 👕</h1>
+    <p class="tagline">The World's Most Prestigious Secret Shirt Exchange™</p>
+    <p style="font-size:0.8em; color:#aaa; margin:4px 0 0;">★ Est. 2025 ★ Best Viewed in Internet Explorer 6 ★</p>
+  </div>
+
+  <!-- SCROLLING MARQUEE -->
+  <div class="marquee-bar">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      🎉 Welcome, Secret Agent! &nbsp;•&nbsp;
+      👕 Buy a shirt. Make someone cringe. &nbsp;•&nbsp;
+      ☕ Teas the day! &nbsp;•&nbsp;
+      🤫 Shhhhh — it's a SECRET &nbsp;•&nbsp;
+      ✈️ Wear it on the way home &nbsp;•&nbsp;
+      💷 Under £10 please &nbsp;•&nbsp;
+      🎉 Welcome, Secret Agent! &nbsp;•&nbsp;
+      👕 Buy a shirt. Make someone cringe. &nbsp;•&nbsp;
+      ☕ Teas the day! &nbsp;•&nbsp;
+    </marquee>
+  </div>
+
+  <!-- SHIRT GALLERY -->
+  <div class="card tilted-left">
+    <h2>👕 Shirt Inspo Hall of Fame 👕</h2>
+    <p style="font-size:0.85em; color:#888; margin:0 0 14px;">The kind of shirts we are looking for. Get inspired.</p>
+    <div class="shirt-gallery">
+
+      <div class="shirt-card">
+        <div class="shirt-shape" style="background:#e74c3c;">
+          WORLD'S OKAYEST<br>COLLEAGUE
+        </div>
+      </div>
+
+      <div class="shirt-card">
+        <div class="shirt-shape" style="background:#2980b9;">
+          MY CODE WORKS<br>AND I DON'T<br>KNOW WHY
+        </div>
+      </div>
+
+      <div class="shirt-card">
+        <div class="shirt-shape" style="background:#27ae60;">
+          HOLD ON<br>LET ME<br>OVERTHINK THIS
+        </div>
+      </div>
+
+      <div class="shirt-card">
+        <div class="shirt-shape" style="background:#8e44ad;">
+          CTRL+Z<br>MY ENTIRE<br>LIFE
+        </div>
+      </div>
+
+      <div class="shirt-card">
+        <div class="shirt-shape" style="background:#e67e22;">
+          PROFESSIONAL<br>OVERTHINKER
+        </div>
+      </div>
+
+      <div class="shirt-card">
+        <div class="shirt-shape" style="background:#16a085;">
+          RUNS ON<br>COFFEE &amp;<br>BAD DECISIONS
+        </div>
+      </div>
+
+      <div class="shirt-card">
+        <div class="shirt-shape" style="background:#c0392b;">
+          NOT ARGUING<br>JUST EXPLAINING<br>WHY I'M RIGHT
+        </div>
+      </div>
+
+      <div class="shirt-card">
+        <div class="shirt-shape" style="background:#1abc9c;">
+          I PUT THE<br>"PRO" IN<br>PROCRASTINATE
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="star-divider">⭐ ✨ 👕 ✨ ⭐</div>
+
+  <!-- RULES -->
+  <div class="card tilted-right">
+    <h2>📋 THE SACRED RULES 📋</h2>
+    <ul class="rules-list">
+      <li><span class="rule-icon">🛍️</span> <strong>Find your person a FUNNY t-shirt</strong> to wear on the journey home</li>
+      <li><span class="rule-icon">💷</span> Budget: <strong>Under £10</strong> (Primark, charity shops, Amazon — anything goes)</li>
+      <li><span class="rule-icon">😂</span> Must be <strong>goofy and hilarious</strong> — the cringier the better</li>
+      <li><span class="rule-icon">🏦</span> Must be <strong>Jane Street safe</strong> — no bad words, no HR nightmares</li>
+      <li><span class="rule-icon">📏</span> <strong>Check their size below!</strong> It must actually fit them comfortably</li>
+      <li><span class="rule-icon">🤫</span> <strong>Keep it secret</strong> — do not reveal who you got until the big moment</li>
+      <li><span class="rule-icon">✈️</span> Shirts are <strong>worn on the airport ride home</strong> — all at once, together</li>
+    </ul>
+  </div>
+
+  <div class="star-divider">✨ 🎉 ☕ 🎉 ✨</div>
+
+  <!-- SIGN UP CTA -->
+  <div class="card center">
+    <h2>🕵️ JOIN THE MISSION 🕵️</h2>
+
+    <div id="count-display" style="margin-bottom:16px;">
+      <span class="count-badge" id="count-text">Loading...</span>
+    </div>
+
+    <a href="signup.html" class="btn-chaos">🎉 SIGN ME UP!!! 🎉</a>
+
+    <p style="margin-top:14px; font-size:0.9em; color:#777;">
+      Already signed up? Your magic link arrives by email after the draw. 📧
+    </p>
+
+    <div style="margin-top:16px;">
+      <a href="participants.html" class="btn-secondary">👀 See who's in</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="site-footer">
+    <p>
+      🎪 London Tea-Shirt Party 2025 &nbsp;•&nbsp;
+      No shirts were harmed in the making of this website &nbsp;•&nbsp;
+      <span class="blink">Visitor #1337</span>
+    </p>
+    <p style="font-size:0.85em;">Built with ☕, 💕, and Comic Sans</p>
+  </div>
+
+</div>
+
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+  async function loadCount() {
+    try {
+      const { count, error } = await supabaseClient
+        .from('participants')
+        .select('*', { count: 'exact', head: true });
+
+      const el = document.getElementById('count-text');
+      if (error) throw error;
+      el.textContent = `${count ?? 0} / 12 Secret Agents enlisted 🕵️`;
+    } catch (e) {
+      document.getElementById('count-text').textContent = '🕵️ Join the mission!';
+    }
+  }
+  loadCount();
+</script>
+</body>
+</html>

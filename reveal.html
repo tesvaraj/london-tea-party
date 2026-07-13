@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🕵️ Your Mission Briefing — London Tea-Shirt Party</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Confetti burst */
+    .confetti-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 999;
+    }
+    .confetti-piece {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      top: -20px;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="confetti-container" id="confetti-container"></div>
+
+<div class="page-wrapper">
+
+  <div class="site-header">
+    <h1>🕵️ MISSION BRIEFING 🕵️</h1>
+    <p class="tagline">Eyes only. For your eyes only. Only your eyes. <span class="blink">👀</span></p>
+  </div>
+
+  <div class="star-divider">⭐ ✨ 🤫 ✨ ⭐</div>
+
+  <!-- LOADING -->
+  <div class="card center" id="state-loading">
+    <div style="font-size:3em;"><span class="spinning">👕</span></div>
+    <p>Decrypting your assignment...</p>
+  </div>
+
+  <!-- ERROR: invalid token -->
+  <div class="card center" id="state-error" style="display:none;">
+    <div style="font-size:3em;">🚫</div>
+    <h2 style="color:#e74c3c;">ACCESS DENIED</h2>
+    <p>This link doesn't seem right. Check your email for the correct link, or contact the organiser.</p>
+    <div class="mt-20">
+      <a href="index.html" class="btn-secondary">🏠 Home</a>
+    </div>
+  </div>
+
+  <!-- NOT DRAWN YET -->
+  <div class="card center" id="state-pending" style="display:none;">
+    <div style="font-size:3em;">⏳</div>
+    <h2 style="color:#e67e22;">NOT YET, AGENT!</h2>
+    <p>
+      The draw hasn't happened yet — you're just a bit early.<br>
+      <strong>Come back after the organiser sends the signal.</strong>
+    </p>
+    <p style="font-size:0.9em; color:#888;">(You'll also get an email the moment the draw runs.)</p>
+    <div class="mt-20">
+      <a href="index.html" class="btn-secondary">🏠 Home</a>
+    </div>
+  </div>
+
+  <!-- SUCCESS: reveal -->
+  <div class="card tilted-left" id="state-reveal" style="display:none;">
+    <div class="reveal-box">
+      <p style="font-size:1em; color:#888; margin:0;">Good evening, Agent. Your target is...</p>
+      <div class="big-name" id="reveal-name">—</div>
+
+      <p style="margin:10px 0 6px; font-size:1em; color:#555;">Their t-shirt size:</p>
+      <div class="size-tag" id="reveal-size">—</div>
+
+      <div class="star-divider" style="margin:20px 0 10px;">✨ 🎉 👕 🎉 ✨</div>
+
+      <div style="background:#fffde7; border:3px dashed var(--pink); border-radius:12px; padding:14px 18px; text-align:left; margin-top:10px;">
+        <p style="margin:0 0 8px; font-weight:bold; color:var(--purple);">🕵️ Your mission (should you choose to accept it):</p>
+        <ul style="margin:0; padding-left:20px; font-size:0.95em;">
+          <li>Find them a <strong>funny, goofy t-shirt</strong></li>
+          <li>Budget: <strong>under £10</strong></li>
+          <li>Must be <strong>work-appropriate</strong> (Jane Street safe ✅)</li>
+          <li>Must be <strong>comfortable to wear</strong> — check that size!</li>
+          <li><strong>Keep it a secret</strong> until the big airport reveal 🤫</li>
+        </ul>
+      </div>
+
+      <p style="font-size:0.85em; color:#aaa; margin-top:18px;">
+        📧 Keep this page bookmarked, or save your email — this link works any time you need to check again.
+      </p>
+      <p style="font-size:0.75em; color:#ccc; font-style:italic;">
+        This message will self-destruct in... just kidding. It's here forever. Good luck! 🎉
+      </p>
+    </div>
+  </div>
+
+  <div class="star-divider mt-20">✨ 🎉 ☕ 🎉 ✨</div>
+
+  <div class="site-footer">
+    <p>London Tea-Shirt Party 2025 &nbsp;•&nbsp; <a href="index.html" style="color:#aaa;">← Back to home</a></p>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+  function show(id) {
+    ['state-loading','state-error','state-pending','state-reveal'].forEach(s => {
+      document.getElementById(s).style.display = s === id ? 'block' : 'none';
+    });
+  }
+
+  function launchConfetti() {
+    const colors = ['#FF1493','#FFD700','#39FF14','#00FFFF','#FF6347','#9400D3'];
+    const container = document.getElementById('confetti-container');
+    for (let i = 0; i < 80; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+      piece.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+      piece.style.animationDelay = (Math.random() * 1.5) + 's';
+      piece.style.opacity = Math.random() * 0.8 + 0.2;
+      container.appendChild(piece);
+    }
+    setTimeout(() => container.innerHTML = '', 5000);
+  }
+
+  async function loadReveal() {
+    const params = new URLSearchParams(window.location.search);
+    const token  = params.get('token');
+
+    if (!token) { show('state-error'); return; }
+
+    try {
+      const { data, error } = await supabaseClient
+        .from('participants')
+        .select('assigned_name, assigned_size')
+        .eq('token', token)
+        .single();
+
+      if (error || !data) { show('state-error'); return; }
+
+      if (!data.assigned_name) { show('state-pending'); return; }
+
+      document.getElementById('reveal-name').textContent = data.assigned_name;
+      document.getElementById('reveal-size').textContent = data.assigned_size;
+      show('state-reveal');
+      launchConfetti();
+
+    } catch (e) {
+      show('state-error');
+    }
+  }
+
+  loadReveal();
+</script>
+</body>
+</html>

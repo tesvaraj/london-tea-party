@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🕵️ The Agents — London Tea-Shirt Party</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <div class="site-header">
+    <h1>🕵️ The Agents 🕵️</h1>
+    <p class="tagline">Who has enlisted so far?</p>
+  </div>
+
+  <div class="star-divider">⭐ ✨ 👕 ✨ ⭐</div>
+
+  <div class="card tilted-right">
+    <h2>📋 Agent Roster 📋</h2>
+
+    <div class="center" style="margin-bottom:16px;">
+      <span class="count-badge" id="count-text">Loading...</span>
+    </div>
+
+    <div id="participant-list" class="participant-grid">
+      <p style="color:#aaa; text-align:center;">Loading agents...</p>
+    </div>
+
+    <p style="font-size:0.82em; color:#aaa; margin-top:18px; text-align:center;">
+      Names and shirt sizes are visible to everyone — your gifter needs to know your size! 👕
+    </p>
+  </div>
+
+  <div class="card center tilted-left">
+    <p>Not on the list yet?</p>
+    <a href="signup.html" class="btn-chaos">🎉 SIGN ME UP!!!</a>
+  </div>
+
+  <div class="star-divider mt-20">✨ 🎉 ☕ 🎉 ✨</div>
+
+  <div class="site-footer">
+    <p>London Tea-Shirt Party 2025 &nbsp;•&nbsp; <a href="index.html" style="color:#aaa;">← Back to home</a></p>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+  async function loadParticipants() {
+    try {
+      const { data, error, count } = await supabaseClient
+        .from('participants')
+        .select('name, shirt_size', { count: 'exact' })
+        .order('created_at', { ascending: true });
+
+      if (error) throw error;
+
+      const listEl  = document.getElementById('participant-list');
+      const countEl = document.getElementById('count-text');
+
+      countEl.textContent = `${data.length} / 12 agents enlisted 🕵️`;
+
+      if (data.length === 0) {
+        listEl.innerHTML = '<p style="color:#aaa; text-align:center;">No agents yet — be the first!</p>';
+        return;
+      }
+
+      listEl.innerHTML = data.map(p => `
+        <div class="participant-chip">
+          <div style="font-weight:bold;">${escapeHtml(p.name)}</div>
+          <div style="font-size:0.82em; color:#888;">Size: <strong>${escapeHtml(p.shirt_size)}</strong></div>
+        </div>
+      `).join('');
+
+    } catch (e) {
+      document.getElementById('participant-list').innerHTML =
+        '<p style="color:#e74c3c; text-align:center;">Could not load agents. Try refreshing!</p>';
+    }
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  loadParticipants();
+</script>
+</body>
+</html>

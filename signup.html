@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>☕ Join the Mission — London Tea-Shirt Party</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <div class="site-header">
+    <h1>🕵️ JOIN THE MISSION 🕵️</h1>
+    <p class="tagline">Enter the Secret Agent Database™</p>
+  </div>
+
+  <div class="star-divider">⭐ ✨ 👕 ✨ ⭐</div>
+
+  <!-- SIGN-UP FORM -->
+  <div class="card tilted-left" id="form-section">
+    <h2>📋 Agent Registration 📋</h2>
+    <p style="font-size:0.9em; color:#666; margin-bottom:18px;">
+      Fill this in so your gifter knows what size shirt to get you. Your shirt size is visible to everyone —
+      that's on purpose! 👀
+    </p>
+
+    <form id="signup-form">
+
+      <div class="form-group">
+        <label for="name">🧍 Full Name</label>
+        <input type="text" id="name" name="name" placeholder="e.g. Jamie Smith" required maxlength="80">
+      </div>
+
+      <div class="form-group">
+        <label for="email">📧 Email Address</label>
+        <input type="email" id="email" name="email" placeholder="e.g. jamie@example.com" required maxlength="150">
+        <p class="form-note">Your magic reveal link will be sent here after the draw. Keep this email!</p>
+      </div>
+
+      <div class="form-group">
+        <label for="shirt_size">👕 Your T-Shirt Size</label>
+        <select id="shirt_size" name="shirt_size" required>
+          <option value="" disabled selected>Pick your size...</option>
+          <option value="XS">XS — Compact Edition</option>
+          <option value="S">S — Standard Issue</option>
+          <option value="M">M — Medium Rare</option>
+          <option value="L">L — Large and in Charge</option>
+          <option value="XL">XL — Extra Luxurious</option>
+          <option value="XXL">XXL — Maximum Capacity</option>
+        </select>
+        <p class="form-note">Pick whatever is comfortable — the shirt must actually fit you!</p>
+      </div>
+
+      <div class="center mt-20">
+        <button type="submit" class="btn-chaos" id="submit-btn">
+          🎉 ENLIST ME!!! 🎉
+        </button>
+      </div>
+
+      <div class="error-box" id="error-box">
+        <strong>Uh oh!</strong> <span id="error-msg"></span>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- SUCCESS STATE (hidden until submit) -->
+  <div class="card center tilted-right" id="success-section" style="display:none;">
+    <div style="font-size:3em;">🎉</div>
+    <h2 style="color:#27ae60;">YOU'RE IN, AGENT!</h2>
+    <p>
+      You've been added to the Secret Agent Database.<br>
+      <strong>After the draw runs, check your email for your magic reveal link.</strong>
+    </p>
+    <p style="font-size:0.9em; color:#888;">
+      (Don't delete it — that's the only way to see who you got!)
+    </p>
+    <div style="margin-top:20px;">
+      <a href="participants.html" class="btn-secondary">👀 See who else is in</a>
+      &nbsp;
+      <a href="index.html" class="btn-secondary">🏠 Home</a>
+    </div>
+  </div>
+
+  <div class="star-divider mt-20">✨ 🎉 ☕ 🎉 ✨</div>
+
+  <div class="site-footer">
+    <p>London Tea-Shirt Party 2025 &nbsp;•&nbsp; <a href="index.html" style="color:#aaa;">← Back to home</a></p>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+  const form = document.getElementById('signup-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const errorBox = document.getElementById('error-box');
+  const errorMsg = document.getElementById('error-msg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name       = document.getElementById('name').value.trim();
+    const email      = document.getElementById('email').value.trim().toLowerCase();
+    const shirt_size = document.getElementById('shirt_size').value;
+
+    if (!name || !email || !shirt_size) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '⏳ Enlisting...';
+    errorBox.style.display = 'none';
+
+    try {
+      const { error } = await supabaseClient
+        .from('participants')
+        .insert([{ name, email, shirt_size }]);
+
+      if (error) {
+        if (error.code === '23505') {
+          // unique constraint — email already registered
+          throw new Error('This email is already signed up! Check your inbox after the draw for your link. 📧');
+        }
+        throw new Error(error.message);
+      }
+
+      document.getElementById('form-section').style.display = 'none';
+      document.getElementById('success-section').style.display = 'block';
+
+    } catch (err) {
+      errorMsg.textContent = err.message;
+      errorBox.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = '🎉 ENLIST ME!!! 🎉';
+    }
+  });
+</script>
+</body>
+</html>
