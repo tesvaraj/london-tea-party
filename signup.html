@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>☕ Join the Mission — London Tea-Shirt Party</title>
+  <title>☕ Join the Mission | London Tea-Shirt Party</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,8 +21,7 @@
   <div class="card tilted-left" id="form-section">
     <h2>📋 Agent Registration 📋</h2>
     <p style="font-size:0.9em; color:#666; margin-bottom:18px;">
-      Fill this in so your gifter knows what size shirt to get you. Your shirt size is visible to everyone —
-      that's on purpose! 👀
+      Fill this in so your gifter knows what size shirt to get you. Your shirt size is visible to everyone. That's on purpose! 👀
     </p>
 
     <form id="signup-form">
@@ -42,14 +41,13 @@
         <label for="shirt_size">👕 Your T-Shirt Size</label>
         <select id="shirt_size" name="shirt_size" required>
           <option value="" disabled selected>Pick your size...</option>
-          <option value="XS">XS — Compact Edition</option>
-          <option value="S">S — Standard Issue</option>
-          <option value="M">M — Medium Rare</option>
-          <option value="L">L — Large and in Charge</option>
-          <option value="XL">XL — Extra Luxurious</option>
-          <option value="XXL">XXL — Maximum Capacity</option>
+          <option value="XS">XS</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
         </select>
-        <p class="form-note">Pick whatever is comfortable — the shirt must actually fit you!</p>
+        <p class="form-note">Pick whatever is comfortable. The shirt must actually fit you!</p>
       </div>
 
       <div class="center mt-20">
@@ -74,7 +72,7 @@
       <strong>After the draw runs, check your email for your magic reveal link.</strong>
     </p>
     <p style="font-size:0.9em; color:#888;">
-      (Don't delete it — that's the only way to see who you got!)
+      (Don't delete it. That's the only way to see who you got!)
     </p>
     <div style="margin-top:20px;">
       <a href="participants.html" class="btn-secondary">👀 See who else is in</a>
@@ -119,7 +117,7 @@
 
       if (error) {
         if (error.code === '23505') {
-          // unique constraint — email already registered
+          // unique constraint | email already registered
           throw new Error('This email is already signed up! Check your inbox after the draw for your link. 📧');
         }
         throw new Error(error.message);
