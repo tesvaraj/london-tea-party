@@ -35,9 +35,13 @@ body {
 }
 
 /* ===================== HEADER LINK ===================== */
-.header-link {
+.header-link,
+.header-link:link,
+.header-link:visited,
+.header-link:hover,
+.header-link:active {
   display: block;
-  text-decoration: none;
+  text-decoration: none !important;
   color: inherit;
   margin-bottom: 18px;
 }
